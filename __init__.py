@@ -4,6 +4,8 @@
 # https://stefanoflore.it
 # https://ai-wiz.art
 
+# 汉化：Zho
+
 import os
 
 script_dir = os.path.dirname(__file__)
@@ -42,7 +44,7 @@ hair_style_list = pmReadTxt(os.path.join(script_dir, "lists/hair_style_list.txt"
 hair_style_list.sort()
 hair_style_list = ['-'] + hair_style_list
 
-class PortraitMaster:
+class PortraitMaster_中文版:
 
     def __init__(self):
         pass
@@ -52,155 +54,155 @@ class PortraitMaster:
         max_float_value = 1.75
         return {
             "required": {
-                "shot": (shot_list, {
+                "镜头类型": (shot_list, {
                     "default": shot_list[0],
                 }),
-                "shot_weight": ("FLOAT", {
-                    "default": 0,
+                "镜头权重": ("FLOAT", {
+                    "default": 1.5,
                     "step": 0.05,
                     "min": 0,
                     "max": max_float_value,
                     "display": "slider",
                 }),
-                "gender": (gender_list, {
+                "性别": (gender_list, {
                     "default": gender_list[0],
                 }),
-                "nationality_1": (nationality_list, {
+                "国籍_1": (nationality_list, {
                     "default": nationality_list[0],
                 }),
-                "nationality_2": (nationality_list, {
+                "国籍_2": (nationality_list, {
                     "default": nationality_list[0],
                 }),
-                "nationality_mix": ("FLOAT", {
+                "国籍混合": ("FLOAT", {
                     "default": 0.5,
                     "min": 0,
                     "max": 1,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "facial_expression": (facial_expressions_list, {
+                "面部表情": (facial_expressions_list, {
                     "default": facial_expressions_list[0],
                 }),
-                "facial_expression_weight": ("FLOAT", {
-                    "default": 0,
+                "面部表情权重": ("FLOAT", {
+                    "default": 1.5,
                     "step": 0.05,
                     "min": 0,
                     "max": max_float_value,
                     "display": "slider",
                 }),
-                "face_shape": (face_shape_list, {
+                "脸型": (face_shape_list, {
                     "default": face_shape_list[0],
                 }),
-                "face_shape_weight": ("FLOAT", {
+                "脸型权重": ("FLOAT", {
                     "default": 0,
                     "step": 0.05,
                     "min": 0,
                     "max": max_float_value,
                     "display": "slider",
                 }),
-                "facial_asymmetry": ("FLOAT", {
+                "面部对称性": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "hair_style": (hair_style_list, {
+                "发型": (hair_style_list, {
                     "default": hair_style_list[0],
                 }),
-                "disheveled": ("FLOAT", {
+                "头发蓬松度": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "age": ("INT", {
-                    "default": 30,
+                "年龄": ("INT", {
+                    "default": 20,
                     "min": 18,
                     "max": 90,
                     "step": 1,
                     "display": "slider",
                 }),
-                "skin_details": ("FLOAT", {
+                "皮肤细节": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "skin_pores": ("FLOAT", {
+                "皮肤毛孔": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "dimples": ("FLOAT", {
+                "酒窝": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "freckles": ("FLOAT", {
+                "雀斑": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "moles": ("FLOAT", {
+                "痣": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "skin_imperfections": ("FLOAT", {
+                "皮肤瑕疵": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "eyes_details": ("FLOAT", {
+                "眼睛细节": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "iris_details": ("FLOAT", {
+                "虹膜细节": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "circular_iris": ("FLOAT", {
+                "圆形虹膜": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "circular_pupil": ("FLOAT", {
+                "圆形瞳孔": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "prompt_start": ("STRING", {
+                "起始提示词": ("STRING", {
                     "multiline": True,
                     "default": "raw photo, (realistic:1.5)"
                 }),
-                "prompt_additional": ("STRING", {
+                "补充提示词": ("STRING", {
                     "multiline": True,
                     "default": ""
                 }),
-                "prompt_end": ("STRING", {
+                "结束提示词": ("STRING", {
                     "multiline": True,
                     "default": ""
                 }),
@@ -213,83 +215,83 @@ class PortraitMaster:
 
     CATEGORY = "AI WizArt"
 
-    def pm(self, shot="-", shot_weight=1, gender="-", facial_expression="-", facial_expression_weight=0, face_shape="-", face_shape_weight=0, nationality_1="-", nationality_2="-", nationality_mix=0.5, age=30, hair_style="-", disheveled=0, dimples=0, freckles=0, skin_pores=0, skin_details=0, moles=0, skin_imperfections=0, eyes_details=1, iris_details=1, circular_iris=1, circular_pupil=1, facial_asymmetry=0, prompt_additional="", prompt_start="", prompt_end=""):
+    def pm(self, 镜头类型="-", 镜头权重=1, 性别="-", 面部表情="-", 面部表情权重=0, 脸型="-", 脸型权重=0, 国籍_1="-", 国籍_2="-", 国籍混合=0.5, 年龄=20, 发型="-", 头发蓬松度=0, 酒窝=0, 雀斑=0, 皮肤毛孔=0, 皮肤细节=0, 痣=0, 皮肤瑕疵=0, 眼睛细节=1, 虹膜细节=1, 圆形虹膜=1, 圆形瞳孔=1, 面部对称性=0, 补充提示词="", 起始提示词="", 结束提示词=""):
 
         prompt = []
 
-        if gender == "-":
-            gender = ""
+        if 性别 == "-":
+            性别 = ""
         else:
-            gender = " " + gender + " "
+            性别 = " " + 性别 + " "
 
-        if nationality_1 != '-' and nationality_2 != '-':
-            nationality_mix_diff = 1 - round(nationality_mix, 2)
-            nationality = f"[{nationality_1}:{nationality_2}:{round(nationality_mix, 2)}:{round(nationality_mix_diff, 2)}]"
-        elif nationality_1 != '-':
-            nationality = nationality_1 + " "
-        elif nationality_2 != '-':
-            nationality = nationality_2 + " "
+        if 国籍_1 != '-' and 国籍_2 != '-':
+            nationality_mix_diff = 1 - round(国籍混合, 2)
+            nationality = f"[{国籍_1}:{国籍_2}:{round(国籍混合, 2)}:{round(nationality_mix_diff, 2)}]"
+        elif 国籍_1 != '-':
+            nationality = 国籍_1 + " "
+        elif 国籍_2 != '-':
+            nationality = 国籍_2 + " "
         else:
             nationality = ""
 
-        if prompt_start != "":
-            prompt.append(f"{prompt_start}")
+        if 起始提示词 != "":
+            prompt.append(f"{起始提示词}")
 
-        if shot != "-":
-            prompt.append(f"({shot}:{round(shot_weight, 2)})")
+        if 镜头类型 != "-":
+            prompt.append(f"({镜头类型}:{round(镜头权重, 2)})")
 
-        prompt.append(f"{nationality}{gender}{round(age)}-years-old")
+        prompt.append(f"{nationality}{性别}{round(年龄)}-years-old")
 
-        if facial_expression != "-":
-            prompt.append(f"({facial_expression}, {facial_expression} expression:{facial_expression_weight})")
+        if 面部表情 != "-":
+            prompt.append(f"({面部表情}, {面部表情} expression:{面部表情权重})")
 
-        if face_shape != "-":
-            prompt.append(f"({face_shape} shape face:{face_shape_weight})")
+        if 脸型 != "-":
+            prompt.append(f"({脸型} shape face:{脸型权重})")
 
-        if hair_style != "-":
-            prompt.append(f"({hair_style} hairstyle:1.25)")
+        if 发型 != "-":
+            prompt.append(f"({发型} hairstyle:1.25)")
 
-        if disheveled != "-":
-            prompt.append(f"(disheveled:{round(disheveled, 2)})")
+        if 头发蓬松度 != "-":
+            prompt.append(f"(disheveled:{round(头发蓬松度, 2)})")
 
-        if prompt_additional != "":
-            prompt.append(f"{prompt_additional}")
+        if 补充提示词 != "":
+            prompt.append(f"{补充提示词}")
 
-        if skin_details > 0:
-            prompt.append(f"(skin details, skin texture:{round(skin_details, 2)})")
+        if 皮肤细节 > 0:
+            prompt.append(f"(skin details, skin texture:{round(皮肤细节, 2)})")
 
-        if skin_pores > 0:
-            prompt.append(f"(skin pores:{round(skin_pores, 2)})")
+        if 皮肤毛孔 > 0:
+            prompt.append(f"(skin pores:{round(皮肤毛孔, 2)})")
 
-        if skin_imperfections > 0:
-            prompt.append(f"(skin imperfections:{round(skin_imperfections, 2)})")
+        if 皮肤瑕疵 > 0:
+            prompt.append(f"(skin imperfections:{round(皮肤瑕疵, 2)})")
 
-        if dimples > 0:
-            prompt.append(f"(dimples:{round(dimples, 2)})")
+        if 酒窝 > 0:
+            prompt.append(f"(dimples:{round(酒窝, 2)})")
 
-        if freckles > 0:
-            prompt.append(f"(freckles:{round(freckles, 2)})")
+        if 雀斑 > 0:
+            prompt.append(f"(freckles:{round(雀斑, 2)})")
 
-        if moles > 0:
-            prompt.append(f"(skin pores:{round(moles, 2)})")
+        if 痣 > 0:
+            prompt.append(f"(skin pores:{round(痣, 2)})")
 
-        if eyes_details > 0:
-            prompt.append(f"(eyes details:{round(eyes_details, 2)})")
+        if 眼睛细节 > 0:
+            prompt.append(f"(eyes details:{round(眼睛细节, 2)})")
 
-        if iris_details > 0:
-            prompt.append(f"(iris details:{round(iris_details, 2)})")
+        if 虹膜细节 > 0:
+            prompt.append(f"(iris details:{round(虹膜细节, 2)})")
 
-        if circular_iris > 0:
-            prompt.append(f"(circular iris:{round(circular_iris, 2)})")
+        if 圆形虹膜 > 0:
+            prompt.append(f"(circular iris:{round(圆形虹膜, 2)})")
 
-        if circular_pupil > 0:
-            prompt.append(f"(circular pupil:{round(circular_pupil, 2)})")
+        if 圆形瞳孔 > 0:
+            prompt.append(f"(circular pupil:{round(圆形瞳孔, 2)})")
 
-        if facial_asymmetry > 0:
-            prompt.append(f"(facial asymmetry, face asymmetry:{round(facial_asymmetry, 2)})")
+        if 面部对称性 > 0:
+            prompt.append(f"(facial asymmetry, face asymmetry:{round(面部对称性, 2)})")
 
-        if prompt_end != "":
-            prompt.append(f"{prompt_end}")
+        if 结束提示词 != "":
+            prompt.append(f"{结束提示词}")
 
         prompt = ", ".join(prompt)
         prompt = prompt.lower()
@@ -300,9 +302,9 @@ class PortraitMaster:
         return (prompt,)
     
 NODE_CLASS_MAPPINGS = {
-    "PortraitMaster": PortraitMaster
+    "PortraitMaster_中文版": PortraitMaster_中文版
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "PortraitMaster": "Portrait Master by AI Wiz Art (Stefano Flore)"
+    "PortraitMaster_中文版": "肖像大师_中文版"
 }
