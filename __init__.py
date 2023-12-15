@@ -7,40 +7,104 @@
 # 汉化：Zho
 
 import os
+import json
 
 script_dir = os.path.dirname(__file__)
 
 # read txt file
 
-def pmReadTxt(file_path):
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
-        values = [line.strip() for line in lines]
-        return values
+#def pmReadTxt(file_path):
+#    with open(file_path, 'r') as file:
+#        lines = file.readlines()
+#        values = [line.strip() for line in lines]
+#        return values
+
+#————————————————————————————————————————————————————————
+# read json file
+#def read_json_and_get_prompts(file_path):
+#    with open(file_path, 'r', encoding='utf-8') as file:
+#        data = json.load(file)
+#    prompts = [item['prompt'] for item in data]
+#    return prompts
+
+def read_json_file(file_path):
+    try:
+        # Open file, load JSON content into python dictionary, and return it.
+        with open(file_path, 'r', encoding='utf-8') as file:
+            json_data = json.load(file)
+            return json_data
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
+def read_json(json_data):
+    # Check that data is a list
+    if not isinstance(json_data, list):
+        print("Error: input data must be a list")
+        return None
+
+    names = []
+
+    # Iterate over each item in the data list
+    for item in json_data:
+        # Check that the item is a dictionary
+        if isinstance(item, dict):
+            # Check that 'name' is a key in the dictionary
+            if 'name' in item:
+                # Append the value of 'name' to the names list
+                names.append(item['name'])
+
+    return names
+
+def read_json_and_get_prompts(json_data, template_name, prompt):
+    try:
+        # Check if json_data is a list
+        if not isinstance(json_data, list):
+            raise ValueError("Invalid JSON data. Expected a list of templates.")
+            
+        for template in json_data:
+            # Check if template contains 'name' and 'prompt' fields
+            if 'name' not in template or 'prompt' not in template:
+                raise ValueError("Invalid template. Missing 'name' or 'prompt' field.")
+            
+            if template['name'] == template_name:
+                prompt = template['prompt']
+                
+                return prompt
+
+        # If function hasn't returned yet, no matching template was found
+        raise ValueError(f"No template found with name '{template_name}'.")
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
+
+#————————————————————————————————————————————————————————
 
 # setup vars
 
-shot_list = pmReadTxt(os.path.join(script_dir, "lists/shot_list.txt"))
+shot_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/shot_list.json"))
 shot_list.sort()
 shot_list = ['-'] + shot_list
 
-gender_list = pmReadTxt(os.path.join(script_dir, "lists/gender_list.txt"))
+gender_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/gender_list.json"))
 gender_list.sort()
 gender_list = ['-'] + gender_list
 
-face_shape_list = pmReadTxt(os.path.join(script_dir, "lists/face_shape_list.txt"))
+face_shape_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/face_shape_list.json"))
 face_shape_list.sort()
 face_shape_list = ['-'] + face_shape_list
 
-facial_expressions_list = pmReadTxt(os.path.join(script_dir, "lists/face_expression_list.txt"))
+facial_expressions_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/face_expression_list.json"))
 facial_expressions_list.sort()
 facial_expressions_list = ['-'] + facial_expressions_list
 
-nationality_list = pmReadTxt(os.path.join(script_dir, "lists/nationality_list.txt"))
+nationality_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/nationality_list.json"))
 nationality_list.sort()
 nationality_list = ['-'] + nationality_list
 
-hair_style_list = pmReadTxt(os.path.join(script_dir, "lists/hair_style_list.txt"))
+hair_style_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/hair_style_list.json"))
 hair_style_list.sort()
 hair_style_list = ['-'] + hair_style_list
 
