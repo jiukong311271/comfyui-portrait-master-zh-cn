@@ -56,7 +56,7 @@ def read_json(json_data):
 
     return names
 
-def read_json_and_get_prompts(json_data, template_name, prompt):
+def read_json_and_get_prompts(json_data, template_name):
     try:
         # Check if json_data is a list
         if not isinstance(json_data, list):
@@ -78,35 +78,45 @@ def read_json_and_get_prompts(json_data, template_name, prompt):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
 
-
-
 #————————————————————————————————————————————————————————
 
-# setup vars
-
-shot_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/shot_list.json"))
+shot_self.json_data = read_json_file(os.path.join(script_dir, "lists/shot_list.json"))
+shot_name = read_json(shot_self.json_data)
+shot_list = read_json_and_get_prompts(shot_self.json_data, shot_name)
 shot_list.sort()
 shot_list = ['-'] + shot_list
 
-gender_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/gender_list.json"))
+gender_self.json_data = read_json_file(os.path.join(script_dir, "lists/gender_list.json"))
+gender_name = read_json(gender_self.json_data)
+gender_list = read_json_and_get_prompts(gender_self.json_data, gender_name)
 gender_list.sort()
 gender_list = ['-'] + gender_list
 
-face_shape_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/face_shape_list.json"))
+face_shape_self.json_data = read_json_file(os.path.join(script_dir, "lists/face_shape_list.json"))
+face_shape_name = read_json(face_shape_self.json_data)
+face_shape_list = read_json_and_get_prompts(face_shape_self.json_data, face_shape_name)
 face_shape_list.sort()
 face_shape_list = ['-'] + face_shape_list
 
-facial_expressions_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/face_expression_list.json"))
+facial_expressions_self.json_data = read_json_file(os.path.join(script_dir, "lists/face_expression_list.json"))
+facial_expressions_name = read_json(facial_expressions_self.json_data)
+facial_expressions_list = read_json_and_get_prompts(facial_expressions_self.json_data, facial_expressions_name)
 facial_expressions_list.sort()
 facial_expressions_list = ['-'] + facial_expressions_list
 
-nationality_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/nationality_list.json"))
+nationality_self.json_data = read_json_file(os.path.join(script_dir, "lists/nationality_list.json"))
+nationality_name = read_json(nationality_self.json_data)
+nationality_list = read_json_and_get_prompts(nationality_self.json_data, nationality_name)
 nationality_list.sort()
 nationality_list = ['-'] + nationality_list
 
-hair_style_list = read_json_and_get_prompts(os.path.join(script_dir, "lists/hair_style_list.json"))
+hair_style_self.json_data = read_json_file(os.path.join(script_dir, "lists/hair_style_list.json"))
+hair_style_name = read_json(hair_style_self.json_data)
+hair_style_list = read_json_and_get_prompts(hair_style_self.json_data, hair_style_name)
 hair_style_list.sort()
 hair_style_list = ['-'] + hair_style_list
+
+#————————————————————————————————————————————————————————
 
 class PortraitMaster_中文版:
 
@@ -158,14 +168,14 @@ class PortraitMaster_中文版:
                     "default": face_shape_list[0],
                 }),
                 "脸型权重": ("FLOAT", {
-                    "default": 0,
+                    "default": 1,
                     "step": 0.05,
                     "min": 0,
                     "max": max_float_value,
                     "display": "slider",
                 }),
                 "面部对称性": ("FLOAT", {
-                    "default": 0,
+                    "default": 0.2,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
@@ -175,7 +185,7 @@ class PortraitMaster_中文版:
                     "default": hair_style_list[0],
                 }),
                 "头发蓬松度": ("FLOAT", {
-                    "default": 0,
+                    "default": 1,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
@@ -189,14 +199,14 @@ class PortraitMaster_中文版:
                     "display": "slider",
                 }),
                 "皮肤细节": ("FLOAT", {
-                    "default": 0,
+                    "default": 0.5,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
                 "皮肤毛孔": ("FLOAT", {
-                    "default": 0,
+                    "default": 0.3,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
@@ -231,28 +241,28 @@ class PortraitMaster_中文版:
                     "display": "slider",
                 }),
                 "眼睛细节": ("FLOAT", {
-                    "default": 0,
+                    "default": 1.2,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
                 "虹膜细节": ("FLOAT", {
-                    "default": 0,
+                    "default": 1.2,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
                 "圆形虹膜": ("FLOAT", {
-                    "default": 0,
+                    "default": 1.2,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
                     "display": "slider",
                 }),
                 "圆形瞳孔": ("FLOAT", {
-                    "default": 0,
+                    "default": 1.2,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
@@ -264,7 +274,7 @@ class PortraitMaster_中文版:
                 }),
                 "补充提示词": ("STRING", {
                     "multiline": True,
-                    "default": ""
+                    "default": "(white background:1.5)"
                 }),
                 "结束提示词": ("STRING", {
                     "multiline": True,
