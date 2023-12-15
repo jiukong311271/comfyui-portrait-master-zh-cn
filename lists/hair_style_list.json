@@ -1,0 +1,82 @@
+[
+    {
+        "name": "不对称剪裁",
+        "prompt": "Asymmetrical cut"
+    },
+    {
+        "name": "直剪",
+        "prompt": "Blunt cut"
+    },
+    {
+        "name": "波波头",
+        "prompt": "Bob cut"
+    },
+    {
+        "name": "编织波波头",
+        "prompt": "Braided bob"
+    },
+    {
+        "name": "光头",
+        "prompt": "Buzz cut"
+    },
+    {
+        "name": "碎发剪裁",
+        "prompt": "Choppy cut"
+    },
+    {
+        "name": "卷发波波头",
+        "prompt": "Curly bob"
+    },
+    {
+        "name": "幕帘刘海",
+        "prompt": "Curtain bangs"
+    },
+    {
+        "name": "假鹰式发型",
+        "prompt": "Faux hawk"
+    },
+    {
+        "name": "羽毛剪裁",
+        "prompt": "Feathered cut"
+    },
+    {
+        "name": "法式波波头",
+        "prompt": "French bob"
+    },
+    {
+        "name": "层次剪裁",
+        "prompt": "Layered cut"
+    },
+    {
+        "name": "长波波头",
+        "prompt": "Long bob"
+    },
+    {
+        "name": "莫霍克发型",
+        "prompt": "Mohawk"
+    },
+    {
+        "name": "小精灵发型",
+        "prompt": "Pixie cut"
+    },
+    {
+        "name": "散乱剪裁",
+        "prompt": "Shag cut"
+    },
+    {
+        "name": "侧扫刘海",
+        "prompt": "Side-swept bangs"
+    },
+    {
+        "name": "质感剪裁",
+        "prompt": "Textured cut"
+    },
+    {
+        "name": "底层剪裁",
+        "prompt": "Undercut"
+    },
+    {
+        "name": "波浪波波头",
+        "prompt": "Wavy bob"
+    }
+]
