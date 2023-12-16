@@ -4,28 +4,10 @@
 # https://stefanoflore.it
 # https://ai-wiz.art
 
-# 汉化：Zho
+# 汉化 + 优化为读取json文件：Zho
 
-import os
 import json
-
-script_dir = os.path.dirname(__file__)
-
-# read txt file
-
-#def pmReadTxt(file_path):
-#    with open(file_path, 'r') as file:
-#        lines = file.readlines()
-#        values = [line.strip() for line in lines]
-#        return values
-
-#————————————————————————————————————————————————————————
-# read json file
-#def read_json_and_get_prompts(file_path):
-#    with open(file_path, 'r', encoding='utf-8') as file:
-#        data = json.load(file)
-#    prompts = [item['prompt'] for item in data]
-#    return prompts
+import os
 
 def read_json_file(file_path):
     try:
@@ -37,7 +19,7 @@ def read_json_file(file_path):
         print(f"An error occurred: {str(e)}")
 
 
-def read_json(json_data):
+def get_name(json_data):
     # Check that data is a list
     if not isinstance(json_data, list):
         print("Error: input data must be a list")
@@ -56,7 +38,7 @@ def read_json(json_data):
 
     return names
 
-def read_json_and_get_prompts(json_data, template_name):
+def get_prompt(json_data, template_name):
     try:
         # Check if json_data is a list
         if not isinstance(json_data, list):
@@ -68,8 +50,8 @@ def read_json_and_get_prompts(json_data, template_name):
                 raise ValueError("Invalid template. Missing 'name' or 'prompt' field.")
             
             if template['name'] == template_name:
-                prompt = template['prompt']
-                
+                prompt = template.get('prompt', "")
+                print("Extracted prompt:", prompt)
                 return prompt
 
         # If function hasn't returned yet, no matching template was found
@@ -78,45 +60,6 @@ def read_json_and_get_prompts(json_data, template_name):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
 
-#————————————————————————————————————————————————————————
-
-shot_self.json_data = read_json_file(os.path.join(script_dir, "lists/shot_list.json"))
-shot_name = read_json(shot_self.json_data)
-shot_list = read_json_and_get_prompts(shot_self.json_data, shot_name)
-shot_list.sort()
-shot_list = ['-'] + shot_list
-
-gender_self.json_data = read_json_file(os.path.join(script_dir, "lists/gender_list.json"))
-gender_name = read_json(gender_self.json_data)
-gender_list = read_json_and_get_prompts(gender_self.json_data, gender_name)
-gender_list.sort()
-gender_list = ['-'] + gender_list
-
-face_shape_self.json_data = read_json_file(os.path.join(script_dir, "lists/face_shape_list.json"))
-face_shape_name = read_json(face_shape_self.json_data)
-face_shape_list = read_json_and_get_prompts(face_shape_self.json_data, face_shape_name)
-face_shape_list.sort()
-face_shape_list = ['-'] + face_shape_list
-
-facial_expressions_self.json_data = read_json_file(os.path.join(script_dir, "lists/face_expression_list.json"))
-facial_expressions_name = read_json(facial_expressions_self.json_data)
-facial_expressions_list = read_json_and_get_prompts(facial_expressions_self.json_data, facial_expressions_name)
-facial_expressions_list.sort()
-facial_expressions_list = ['-'] + facial_expressions_list
-
-nationality_self.json_data = read_json_file(os.path.join(script_dir, "lists/nationality_list.json"))
-nationality_name = read_json(nationality_self.json_data)
-nationality_list = read_json_and_get_prompts(nationality_self.json_data, nationality_name)
-nationality_list.sort()
-nationality_list = ['-'] + nationality_list
-
-hair_style_self.json_data = read_json_file(os.path.join(script_dir, "lists/hair_style_list.json"))
-hair_style_name = read_json(hair_style_self.json_data)
-hair_style_list = read_json_and_get_prompts(hair_style_self.json_data, hair_style_name)
-hair_style_list.sort()
-hair_style_list = ['-'] + hair_style_list
-
-#————————————————————————————————————————————————————————
 
 class PortraitMaster_中文版:
 
@@ -124,8 +67,42 @@ class PortraitMaster_中文版:
         pass
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(self):
+        # Get current file's directory
+        p = os.path.dirname(os.path.realpath(__file__))
+
+        # Paths for various JSON files
+        shot_file_path = os.path.join(p, 'lists/shot_list.json')
+        gender_file_path = os.path.join(p, 'lists/gender_list.json')
+        face_shape_file_path = os.path.join(p, 'lists/face_shape_list.json')
+        facial_expressions_file_path = os.path.join(p, 'lists/face_expression_list.json')
+        nationality_file_path = os.path.join(p, 'lists/nationality_list.json')
+        hair_style_file_path = os.path.join(p, 'lists/hair_style_list.json')
+
+        # Read JSON from file
+        self.shot_data = read_json_file(shot_file_path)
+        self.gender_data = read_json_file(gender_file_path)
+        self.face_shape_data = read_json_file(face_shape_file_path)
+        self.facial_expressions_data = read_json_file(facial_expressions_file_path)
+        self.nationality_data = read_json_file(nationality_file_path)
+        self.hair_style_data = read_json_file(hair_style_file_path)
+
+        # Retrieve name from JSON data
+        shot_list = get_name(self.shot_data)
+        shot_list = ['-'] + shot_list
+        gender_list = get_name(self.gender_data)
+        gender_list = ['-'] + gender_list
+        face_shape_list = get_name(self.face_shape_data)
+        face_shape_list = ['-'] + face_shape_list
+        facial_expressions_list = get_name(self.facial_expressions_data)
+        facial_expressions_list = ['-'] + facial_expressions_list
+        nationality_list = get_name(self.nationality_data)
+        nationality_list = ['-'] + nationality_list
+        hair_style_list = get_name(self.hair_style_data)
+        hair_style_list = ['-'] + hair_style_list
+        
         max_float_value = 1.75
+
         return {
             "required": {
                 "镜头类型": (shot_list, {
@@ -284,46 +261,53 @@ class PortraitMaster_中文版:
         }
 
     RETURN_TYPES = ("STRING",)
-
+    RETURN_NAMES = ("prompt",)
     FUNCTION = "pm"
-
-    CATEGORY = "AI WizArt"
+    CATEGORY = "📸肖像大师"
 
     def pm(self, 镜头类型="-", 镜头权重=1, 性别="-", 面部表情="-", 面部表情权重=0, 脸型="-", 脸型权重=0, 国籍_1="-", 国籍_2="-", 国籍混合=0.5, 年龄=20, 发型="-", 头发蓬松度=0, 酒窝=0, 雀斑=0, 皮肤毛孔=0, 皮肤细节=0, 痣=0, 皮肤瑕疵=0, 眼睛细节=1, 虹膜细节=1, 圆形虹膜=1, 圆形瞳孔=1, 面部对称性=0, 补充提示词="", 起始提示词="", 结束提示词=""):
+
+        shot = get_prompt(self.shot_data, 镜头类型)
+        gender = get_prompt(self.gender_data, 性别)
+        face_shape = get_prompt(self.face_shape_data, 脸型)
+        facial_expressions = get_prompt(self.facial_expressions_data, 面部表情)
+        nationality_1 = get_prompt(self.nationality_data, 国籍_1)
+        nationality_2 = get_prompt(self.nationality_data, 国籍_2)
+        hair_style = get_prompt(self.hair_style_data, 发型)
 
         prompt = []
 
         if 性别 == "-":
             性别 = ""
         else:
-            性别 = " " + 性别 + " "
+            性别 = " " + gender + " "
 
         if 国籍_1 != '-' and 国籍_2 != '-':
             nationality_mix_diff = 1 - round(国籍混合, 2)
-            nationality = f"[{国籍_1}:{国籍_2}:{round(国籍混合, 2)}:{round(nationality_mix_diff, 2)}]"
+            Anationality = f"[{nationality_1}:{nationality_2}:{round(国籍混合, 2)}:{round(nationality_mix_diff, 2)}]"
         elif 国籍_1 != '-':
-            nationality = 国籍_1 + " "
+            Anationality = nationality_1 + " "
         elif 国籍_2 != '-':
-            nationality = 国籍_2 + " "
+            Anationality = nationality_2 + " "
         else:
-            nationality = ""
+            Anationality = ""
 
         if 起始提示词 != "":
             prompt.append(f"{起始提示词}")
 
         if 镜头类型 != "-":
-            prompt.append(f"({镜头类型}:{round(镜头权重, 2)})")
+            prompt.append(f"({shot}:{round(镜头权重, 2)})")
 
-        prompt.append(f"{nationality}{性别}{round(年龄)}-years-old")
+        prompt.append(f"{Anationality}{性别}{round(年龄)}-years-old")
 
         if 面部表情 != "-":
-            prompt.append(f"({面部表情}, {面部表情} expression:{面部表情权重})")
+            prompt.append(f"({facial_expressions}, {facial_expressions} expression:{面部表情权重})")
 
         if 脸型 != "-":
-            prompt.append(f"({脸型} shape face:{脸型权重})")
+            prompt.append(f"({face_shape} shape face:{脸型权重})")
 
         if 发型 != "-":
-            prompt.append(f"({发型} hairstyle:1.25)")
+            prompt.append(f"({hair_style} hairstyle:1.25)")
 
         if 头发蓬松度 != "-":
             prompt.append(f"(disheveled:{round(头发蓬松度, 2)})")
@@ -374,7 +358,9 @@ class PortraitMaster_中文版:
         print(prompt)
 
         return (prompt,)
-    
+
+
+
 NODE_CLASS_MAPPINGS = {
     "PortraitMaster_中文版": PortraitMaster_中文版
 }
