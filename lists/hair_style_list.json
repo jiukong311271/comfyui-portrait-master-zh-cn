@@ -16,7 +16,7 @@
         "prompt": "Braided bob"
     },
     {
-        "name": "光头",
+        "name": "寸头",
         "prompt": "Buzz cut"
     },
     {
@@ -32,7 +32,7 @@
         "prompt": "Curtain bangs"
     },
     {
-        "name": "假鹰式发型",
+        "name": "飞机头",
         "prompt": "Faux hawk"
     },
     {
@@ -56,7 +56,7 @@
         "prompt": "Mohawk"
     },
     {
-        "name": "小精灵发型",
+        "name": "精灵短发",
         "prompt": "Pixie cut"
     },
     {
@@ -78,5 +78,81 @@
     {
         "name": "波浪波波头",
         "prompt": "Wavy bob"
+    },
+    {
+        "name": "飞机头+精灵短发",
+        "prompt": "Faux hawk short pixie"
+    },
+    {
+        "name": "短发剃边",
+        "prompt": "Brave short haircut with shaved sides"
+    },
+    {
+        "name": "剃边锥形发型",
+        "prompt": "Tapered haircut with shaved side"
+    },
+    {
+        "name": "层叠波波头",
+        "prompt": "Stacked bob"
+    },
+    {
+        "name": "柠檬辫",
+        "prompt": "Lemonade braids"
+    },
+    {
+        "name": "中分马尾",
+        "prompt": "Middle part ponytails"
+    },
+    {
+        "name": "编织辫",
+        "prompt": "Stitch braids"
+    },
+    {
+        "name": "深侧分",
+        "prompt": "Deep side part"
+    },
+    {
+        "name": "法式辫",
+        "prompt": "French braids"
+    },
+    {
+        "name": "盒子辫",
+        "prompt": "Box braids"
+    },
+    {
+        "name": "双荷兰辫",
+        "prompt": "Two dutch braids"
+    },
+    {
+        "name": "波浪剪裁帘式刘海",
+        "prompt": "Wavy cut with curtains bangs"
+    },
+    {
+        "name": "右侧剃光",
+        "prompt": "Right side shaved"
+    },
+    {
+        "name": "扫式精灵",
+        "prompt": "Sweeping pixie"
+    },
+    {
+        "name": "光滑长波波头",
+        "prompt": "Smooth lob"
+    },
+    {
+        "name": "长精灵",
+        "prompt": "Long pixie"
+    },
+    {
+        "name": "侧扫精灵",
+        "prompt": "Sideswept pixie"
+    },
+    {
+        "name": "意式波波头",
+        "prompt": "Italian bob"
+    },
+    {
+        "name": "短长组合",
+        "prompt": "Shullet"
     }
 ]
