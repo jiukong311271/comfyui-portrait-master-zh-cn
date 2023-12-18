@@ -1,5 +1,9 @@
 [
     {
+        "name": "肖像",
+        "prompt": "Portrait"
+    },
+    {
         "name": "头像",
         "prompt": "Head portrait"
     },
@@ -16,16 +20,12 @@
         "prompt": "Full-length portrait"
     },
     {
-        "name": "脸部肖像",
-        "prompt": "Face"
-    }
-    {
-        "name": "肖像",
-        "prompt": "Portrait"
-    },
-    {
         "name": "全身像 Full body",
         "prompt": "Full body"
+    },
+    {
+        "name": "脸部肖像",
+        "prompt": "Face"
     },
     {
         "name": "特写",
