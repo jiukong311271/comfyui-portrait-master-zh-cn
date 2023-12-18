@@ -1,10 +1,11 @@
 # PORTRAIT MASTER
 # Created by AI Wiz Art (Stefano Flore)
-# Version: 1.5
+# Version: 2.0
 # https://stefanoflore.it
 # https://ai-wiz.art
 
 # 汉化 + 优化为读取json文件：Zho
+# 版本：2.0
 
 import json
 import os
@@ -74,24 +75,34 @@ class PortraitMaster_中文版:
         # Paths for various JSON files
         shot_file_path = os.path.join(p, 'lists/shot_list.json')
         gender_file_path = os.path.join(p, 'lists/gender_list.json')
+        eyes_color_file_path = os.path.join(p, 'lists/eyes_color_list.json')
         face_shape_file_path = os.path.join(p, 'lists/face_shape_list.json')
         facial_expressions_file_path = os.path.join(p, 'lists/face_expression_list.json')
         nationality_file_path = os.path.join(p, 'lists/nationality_list.json')
         hair_style_file_path = os.path.join(p, 'lists/hair_style_list.json')
+        hair_color_file_path = os.path.join(p, 'lists/hair_color_list.json')
+        light_type_file_path = os.path.join(p, 'lists/light_type_list.json')
+        light_direction_file_path = os.path.join(p, 'lists/light_direction_list.json')
 
         # Read JSON from file
         self.shot_data = read_json_file(shot_file_path)
         self.gender_data = read_json_file(gender_file_path)
+        self.eyes_color_data = read_json_file(eyes_color_file_path)
         self.face_shape_data = read_json_file(face_shape_file_path)
         self.facial_expressions_data = read_json_file(facial_expressions_file_path)
         self.nationality_data = read_json_file(nationality_file_path)
         self.hair_style_data = read_json_file(hair_style_file_path)
+        self.hair_color_data = read_json_file(hair_color_file_path)
+        self.light_type_data = read_json_file(light_type_file_path)
+        self.light_direction_data = read_json_file(light_direction_file_path)
 
         # Retrieve name from JSON data
         shot_list = get_name(self.shot_data)
         shot_list = ['-'] + shot_list
         gender_list = get_name(self.gender_data)
         gender_list = ['-'] + gender_list
+        eyes_color_list = get_name(self.eyes_color_data)
+        eyes_color_list = ['-'] + eyes_color_list
         face_shape_list = get_name(self.face_shape_data)
         face_shape_list = ['-'] + face_shape_list
         facial_expressions_list = get_name(self.facial_expressions_data)
@@ -100,6 +111,12 @@ class PortraitMaster_中文版:
         nationality_list = ['-'] + nationality_list
         hair_style_list = get_name(self.hair_style_data)
         hair_style_list = ['-'] + hair_style_list
+        hair_color_list = get_name(self.hair_color_data)
+        hair_color_list = ['-'] + hair_color_list
+        light_type_list = get_name(self.light_type_data)
+        light_type_list = ['-'] + light_type_list
+        light_direction_list = get_name(self.light_direction_data)
+        light_direction_list = ['-'] + light_direction_list
         
         max_float_value = 1.75
 
@@ -131,6 +148,9 @@ class PortraitMaster_中文版:
                     "step": 0.05,
                     "display": "slider",
                 }),
+                "眼睛颜色": (eyes_color_list, {
+                    "default": eyes_color_list[0],
+                }),
                 "面部表情": (facial_expressions_list, {
                     "default": facial_expressions_list[0],
                 }),
@@ -160,6 +180,9 @@ class PortraitMaster_中文版:
                 }),
                 "发型": (hair_style_list, {
                     "default": hair_style_list[0],
+                }),
+                "头发颜色": (hair_color_list, {
+                    "default": hair_color_list[0],
                 }),
                 "头发蓬松度": ("FLOAT", {
                     "default": 1,
@@ -245,6 +268,20 @@ class PortraitMaster_中文版:
                     "step": 0.05,
                     "display": "slider",
                 }),
+                "灯光类型": (light_type_list, {
+                    "default": light_type_list[0],
+                }),
+                "灯光方向": (light_direction_list, {
+                    "default": light_direction_list[0],
+                }),
+                "灯光权重": ("FLOAT", {
+                    "default": 0,
+                    "min": 0,
+                    "max": max_float_value,
+                    "step": 0.05,
+                    "display": "slider",
+                }),
+                "提高照片真实感": (["enable", "disable"],),
                 "起始提示词": ("STRING", {
                     "multiline": True,
                     "default": "raw photo, (realistic:1.5)"
@@ -257,6 +294,10 @@ class PortraitMaster_中文版:
                     "multiline": True,
                     "default": ""
                 }),
+                "负面提示词": ("STRING", {
+                    "multiline": True,
+                    "default": ""
+                }),
             }
         }
 
@@ -265,15 +306,19 @@ class PortraitMaster_中文版:
     FUNCTION = "pm"
     CATEGORY = "📸肖像大师"
 
-    def pm(self, 镜头类型="-", 镜头权重=1, 性别="-", 面部表情="-", 面部表情权重=0, 脸型="-", 脸型权重=0, 国籍_1="-", 国籍_2="-", 国籍混合=0.5, 年龄=20, 发型="-", 头发蓬松度=0, 酒窝=0, 雀斑=0, 皮肤毛孔=0, 皮肤细节=0, 痣=0, 皮肤瑕疵=0, 眼睛细节=1, 虹膜细节=1, 圆形虹膜=1, 圆形瞳孔=1, 面部对称性=0, 补充提示词="", 起始提示词="", 结束提示词=""):
+    def pm(self, 镜头类型="-", 镜头权重=1, 性别="-", 眼睛颜色="-", 面部表情="-", 面部表情权重=0, 脸型="-", 脸型权重=0, 国籍_1="-", 国籍_2="-", 国籍混合=0.5, 年龄=20, 发型="-", 头发颜色="-", 头发蓬松度=0, 酒窝=0, 雀斑=0, 皮肤毛孔=0, 皮肤细节=0, 痣=0, 皮肤瑕疵=0, 眼睛细节=1, 虹膜细节=1, 圆形虹膜=1, 圆形瞳孔=1, 面部对称性=0, 补充提示词="", 起始提示词="", 结束提示词="", 灯光类型="-", 灯光方向="-", 灯光权重=0, 负面提示词="", 提高照片真实感="disable"):
 
         shot = get_prompt(self.shot_data, 镜头类型)
         gender = get_prompt(self.gender_data, 性别)
+        eyes_color = get_prompt(self.eyes_color_data, 眼睛颜色)
         face_shape = get_prompt(self.face_shape_data, 脸型)
         facial_expressions = get_prompt(self.facial_expressions_data, 面部表情)
         nationality_1 = get_prompt(self.nationality_data, 国籍_1)
         nationality_2 = get_prompt(self.nationality_data, 国籍_2)
         hair_style = get_prompt(self.hair_style_data, 发型)
+        hair_color = get_prompt(self.hair_color_data, 头发颜色)
+        light_type = get_prompt(self.light_type_data, 灯光类型)
+        light_direction = get_prompt(self.light_direction_data, 灯光方向)
 
         prompt = []
 
@@ -283,8 +328,7 @@ class PortraitMaster_中文版:
             性别 = " " + gender + " "
 
         if 国籍_1 != '-' and 国籍_2 != '-':
-            nationality_mix_diff = 1 - round(国籍混合, 2)
-            Anationality = f"[{nationality_1}:{nationality_2}:{round(国籍混合, 2)}:{round(nationality_mix_diff, 2)}]"
+            Anationality = f"[{nationality_1}:{nationality_2}:{round(国籍混合, 2)}]"
         elif 国籍_1 != '-':
             Anationality = nationality_1 + " "
         elif 国籍_2 != '-':
@@ -295,20 +339,26 @@ class PortraitMaster_中文版:
         if 起始提示词 != "":
             prompt.append(f"{起始提示词}")
 
-        if 镜头类型 != "-":
+        if 镜头类型 != "-" and 镜头权重 > 0:
             prompt.append(f"({shot}:{round(镜头权重, 2)})")
 
-        prompt.append(f"{Anationality}{性别}{round(年龄)}-years-old")
+        prompt.append(f"({Anationality}{性别}{round(年龄)}-years-old:1.5)")
 
-        if 面部表情 != "-":
-            prompt.append(f"({facial_expressions}, {facial_expressions} expression:{面部表情权重})")
+        if 眼睛颜色 != "-":
+            prompt.append(f"({eyes_color} eyes:1.25)")
+        
+        if 面部表情 != "-" and 面部表情权重 > 0:
+            prompt.append(f"({facial_expressions}, {facial_expressions} expression:{round(面部表情权重, 2)})")
 
-        if 脸型 != "-":
+        if 脸型 != "-" and 脸型权重 > 0:
             prompt.append(f"({face_shape} shape face:{脸型权重})")
 
         if 发型 != "-":
             prompt.append(f"({hair_style} hairstyle:1.25)")
 
+        if 头发颜色 != "-":
+            prompt.append(f"({hair_color} hair:1.25)")
+        
         if 头发蓬松度 != "-":
             prompt.append(f"(disheveled:{round(头发蓬松度, 2)})")
 
@@ -348,16 +398,29 @@ class PortraitMaster_中文版:
         if 面部对称性 > 0:
             prompt.append(f"(facial asymmetry, face asymmetry:{round(面部对称性, 2)})")
 
+        if 灯光类型 != '-' and 灯光权重 > 0:
+            if 灯光方向 != '-':
+                prompt.append(f"({light_type} {light_direction}:{round(灯光权重, 2)})")
+            else:
+                prompt.append(f"({light_type}:{round(灯光权重, 2)})")
+        
         if 结束提示词 != "":
             prompt.append(f"{结束提示词}")
 
         prompt = ", ".join(prompt)
         prompt = prompt.lower()
 
+        if 提高照片真实感 == "enable":
+            prompt = prompt + ", (detailed, professional photo, perfect exposition:1.25), (film grain:1.5)"
+
+        if 提高照片真实感 == "enable":
+            negative_prompt = negative_prompt + ", (shinny skin, reflections on the skin, skin reflections:1.5)"
+
+        
         print("Portrait Master as generate the prompt:")
         print(prompt)
 
-        return (prompt,)
+        return (prompt,negative_prompt,)
 
 
 
