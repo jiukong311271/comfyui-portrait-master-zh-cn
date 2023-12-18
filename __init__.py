@@ -301,8 +301,8 @@ class PortraitMaster_中文版:
             }
         }
 
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("prompt",)
+    RETURN_TYPES = ("STRING","STRING",)
+    RETURN_NAMES = ("positive", "negative",)
     FUNCTION = "pm"
     CATEGORY = "📸肖像大师"
 
@@ -429,5 +429,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "PortraitMaster_中文版": "📸 肖像大师_中文版"
+    "PortraitMaster_中文版": "📸 肖像大师_中文版_2.0"
 }
