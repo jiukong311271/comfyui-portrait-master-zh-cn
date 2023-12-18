@@ -415,6 +415,8 @@ class PortraitMaster_中文版:
 
         if 提高照片真实感 == "enable":
             negative_prompt = 负面提示词 + ", (shinny skin, reflections on the skin, skin reflections:1.5)"
+        else:
+            negative_prompt = 负面提示词
 
         
         print("Portrait Master as generate the prompt:")
