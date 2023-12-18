@@ -275,7 +275,7 @@ class PortraitMaster_中文版:
                     "default": light_direction_list[0],
                 }),
                 "灯光权重": ("FLOAT", {
-                    "default": 0,
+                    "default": 1.2,
                     "min": 0,
                     "max": max_float_value,
                     "step": 0.05,
