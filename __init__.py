@@ -414,7 +414,7 @@ class PortraitMaster_中文版:
             prompt = prompt + ", (detailed, professional photo, perfect exposition:1.25), (film grain:1.5)"
 
         if 提高照片真实感 == "enable":
-            negative_prompt = negative_prompt + ", (shinny skin, reflections on the skin, skin reflections:1.5)"
+            negative_prompt = 负面提示词 + ", (shinny skin, reflections on the skin, skin reflections:1.5)"
 
         
         print("Portrait Master as generate the prompt:")
