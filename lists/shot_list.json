@@ -12,11 +12,23 @@
         "prompt": "Half-length portrait"
     },
     {
-        "name": "全身像",
+        "name": "全身像 Full-length portrait",
         "prompt": "Full-length portrait"
     },
     {
         "name": "脸部肖像",
         "prompt": "Face"
+    }
+    {
+        "name": "肖像",
+        "prompt": "Portrait"
+    },
+    {
+        "name": "全身像 Full body",
+        "prompt": "Full body"
+    },
+    {
+        "name": "特写",
+        "prompt": "Close-up"
     }
 ]
