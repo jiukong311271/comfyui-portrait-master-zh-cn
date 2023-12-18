@@ -8,6 +8,8 @@
 
 - 优化 + 汉化 自 [ComfyUI Portrait Master](https://github.com/florestefano1975/comfyui-portrait-master.git)
 
+- 版本：V2.0
+
 ## 参数说明 | Parameters
 
 - 镜头类型：头像、肩部以上肖像、半身像、全身像、脸部肖像
