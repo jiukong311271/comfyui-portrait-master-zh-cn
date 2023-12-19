@@ -125,6 +125,12 @@ https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/assets/140084057/8e
 
 - 对 [ComfyUI Portrait Master](https://github.com/florestefano1975/comfyui-portrait-master.git) 完成汉化
 
+
+## Stars 
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn&type=Date)](https://star-history.com/#ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn&Date)
+
+
 ## Credits
 
 [ComfyUI Portrait Master](https://github.com/florestefano1975/comfyui-portrait-master.git)
