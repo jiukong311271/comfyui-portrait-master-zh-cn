@@ -89,9 +89,12 @@
 
 ## 安装 | Install
 
-1. `cd custom_nodes`
-2. `git clone https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn.git`
-3. 重启 ComfyUI
+- 推荐使用 ComfyUI Manager 安装
+
+- 手动安装：
+    1. `cd custom_nodes`
+    2. `git clone https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn.git`
+    3. 重启 ComfyUI
 
 ## 工作流 | Workflow
 
@@ -142,6 +145,8 @@ https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/assets/140084057/8e
     - 痘痘
     - 皱纹
     - 小麦色肤色
+ 
+- 已登陆 manager 不用手动安装了
 
 20231218
 
