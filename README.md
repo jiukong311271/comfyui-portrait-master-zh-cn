@@ -1,6 +1,7 @@
 # ComfyUI Portrait Master 简体中文版
 
-![Dingtalk_20231218164020](https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/assets/140084057/38d305cb-64f3-4dcf-a389-5ad3f84be7b3)
+
+![Dingtalk_20231221171244](https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/assets/140084057/f14a31f6-56f0-4e3e-9bf0-5a7a209175bd)
 
 
 ## 项目介绍 | Info
@@ -10,6 +11,8 @@
 - 优化 + 汉化 自 [ComfyUI Portrait Master](https://github.com/florestefano1975/comfyui-portrait-master.git)
 
 - 版本：V2.2
+
+- 版本说明：版本越高内容越多，但随着提示词逐渐增多，每项参数的最终效果可能会被削弱，因此并非版本越高越好用，请选择适合自己的版本
 
 ## 参数说明 | Parameters
 
@@ -67,6 +70,9 @@
 
 ## 姿势库 | Model Pose Library
 
+特别提醒：由于肖像大师的本质是提示词，因此想要通过纯提示词实现姿势的稳定生成需要大量抽卡才能实现，这是我测试抽卡了一下午精选的结果，所以建议配合 openpose 实现姿势的精确控制，别为难自己！
+
+![poselist_](https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/assets/140084057/0eac37da-6aee-4591-9755-19e3b317724c)
 
 
 ## 自定义 | Customizations
@@ -91,8 +97,9 @@
 
 ### V2.2工作流
 
+- [V2.2 For SD1.5 or SDXL](https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/blob/main/workflows/Portrait%20Master%20%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E7%89%88%20V2.2%E3%80%90Zho%E3%80%91.json)
 
-
+![Dingtalk_20231221171315](https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/assets/140084057/f36c43f7-5381-470b-a5f5-8abed834e2e2)
 
 ### V2.0工作流
 
@@ -147,6 +154,8 @@ https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/assets/140084057/8e
     - 负面提示词
     - 镜头类型（+3种）
     - 发型（+19种）
+
+![Dingtalk_20231218164020](https://github.com/ZHO-ZHO-ZHO/comfyui-portrait-master-zh-cn/assets/140084057/38d305cb-64f3-4dcf-a389-5ad3f84be7b3)
 
 20231216
 
