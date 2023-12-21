@@ -1,11 +1,11 @@
 # PORTRAIT MASTER
 # Created by AI Wiz Art (Stefano Flore)
-# Version: 2.0
+# Version: 2.2
 # https://stefanoflore.it
 # https://ai-wiz.art
 
 # 汉化 + 优化为读取json文件：Zho
-# 版本：2.0
+# 版本：2.2
 
 import json
 import os
@@ -83,6 +83,10 @@ class PortraitMaster_中文版:
         hair_color_file_path = os.path.join(p, 'lists/hair_color_list.json')
         light_type_file_path = os.path.join(p, 'lists/light_type_list.json')
         light_direction_file_path = os.path.join(p, 'lists/light_direction_list.json')
+        #v2.2
+        body_type_file_path = os.path.join(p, 'lists/body_type_list.json')
+        beard_file_path = os.path.join(p, 'lists/beard_list.json')
+        model_pose_file_path = os.path.join(p, 'lists/model_pose_list.json')
 
         # Read JSON from file
         self.shot_data = read_json_file(shot_file_path)
@@ -95,6 +99,10 @@ class PortraitMaster_中文版:
         self.hair_color_data = read_json_file(hair_color_file_path)
         self.light_type_data = read_json_file(light_type_file_path)
         self.light_direction_data = read_json_file(light_direction_file_path)
+        #V2.2
+        self.body_type_data = read_json_file(body_type_file_path)
+        self.beard_data = read_json_file(beard_file_path)
+        self.model_pose_data = read_json_file(model_pose_file_path)
 
         # Retrieve name from JSON data
         shot_list = get_name(self.shot_data)
@@ -117,6 +125,14 @@ class PortraitMaster_中文版:
         light_type_list = ['-'] + light_type_list
         light_direction_list = get_name(self.light_direction_data)
         light_direction_list = ['-'] + light_direction_list
+        #V2.2
+        body_type_list = get_name(self.body_type_data)
+        body_type_list = ['-'] + body_type_list
+        beard_list = get_name(self.beard_data)
+        beard_list = ['-'] + beard_list
+        model_pose_list = get_name(self.model_pose_data)
+        model_pose_list = ['-'] + model_pose_list
+        
         
         max_float_value = 1.75
 
@@ -135,6 +151,13 @@ class PortraitMaster_中文版:
                 "性别": (gender_list, {
                     "default": gender_list[0],
                 }),
+                "年龄": ("INT", {
+                    "default": 20,
+                    "min": 18,
+                    "max": 90,
+                    "step": 1,
+                    "display": "slider",
+                }),
                 "国籍_1": (nationality_list, {
                     "default": nationality_list[0],
                 }),
@@ -147,6 +170,19 @@ class PortraitMaster_中文版:
                     "max": 1,
                     "step": 0.05,
                     "display": "slider",
+                }),
+                "体型": (body_type_list, {
+                    "default": body_type_list[0],
+                }),
+                "体型权重": ("FLOAT", {
+                    "default": 0,
+                    "step": 0.05,
+                    "min": 0,
+                    "max": max_float_value,
+                    "display": "slider",
+                }),
+                "姿势": (model_pose_list, {
+                    "default": model_pose_list[0],
                 }),
                 "眼睛颜色": (eyes_color_list, {
                     "default": eyes_color_list[0],
@@ -191,12 +227,8 @@ class PortraitMaster_中文版:
                     "step": 0.05,
                     "display": "slider",
                 }),
-                "年龄": ("INT", {
-                    "default": 20,
-                    "min": 18,
-                    "max": 90,
-                    "step": 1,
-                    "display": "slider",
+                "胡子": (beard_list, {
+                    "default": beard_list[0],
                 }),
                 "皮肤细节": ("FLOAT", {
                     "default": 0.5,
@@ -219,6 +251,13 @@ class PortraitMaster_中文版:
                     "step": 0.05,
                     "display": "slider",
                 }),
+                "皱纹": ("FLOAT", {
+                    "default": 0,
+                    "min": 0,
+                    "max": max_float_value,
+                    "step": 0.05,
+                    "display": "slider",
+                }),
                 "雀斑": ("FLOAT", {
                     "default": 0,
                     "min": 0,
@@ -234,6 +273,20 @@ class PortraitMaster_中文版:
                     "display": "slider",
                 }),
                 "皮肤瑕疵": ("FLOAT", {
+                    "default": 0,
+                    "min": 0,
+                    "max": max_float_value,
+                    "step": 0.05,
+                    "display": "slider",
+                }),
+                "痘痘": ("FLOAT", {
+                    "default": 0,
+                    "min": 0,
+                    "max": max_float_value,
+                    "step": 0.05,
+                    "display": "slider",
+                }),
+                "小麦色肤色": ("FLOAT", {
                     "default": 0,
                     "min": 0,
                     "max": max_float_value,
@@ -306,7 +359,7 @@ class PortraitMaster_中文版:
     FUNCTION = "pm"
     CATEGORY = "📸肖像大师"
 
-    def pm(self, 镜头类型="-", 镜头权重=1, 性别="-", 眼睛颜色="-", 面部表情="-", 面部表情权重=0, 脸型="-", 脸型权重=0, 国籍_1="-", 国籍_2="-", 国籍混合=0.5, 年龄=20, 发型="-", 头发颜色="-", 头发蓬松度=0, 酒窝=0, 雀斑=0, 皮肤毛孔=0, 皮肤细节=0, 痣=0, 皮肤瑕疵=0, 眼睛细节=1, 虹膜细节=1, 圆形虹膜=1, 圆形瞳孔=1, 面部对称性=0, 补充提示词="", 起始提示词="", 结束提示词="", 灯光类型="-", 灯光方向="-", 灯光权重=0, 负面提示词="", 提高照片真实感="disable"):
+    def pm(self, 镜头类型="-", 镜头权重=1, 性别="-", 体型="-", 体型权重=0, 眼睛颜色="-", 面部表情="-", 面部表情权重=0, 脸型="-", 脸型权重=0, 国籍_1="-", 国籍_2="-", 国籍混合=0.5, 年龄=20, 发型="-", 头发颜色="-", 头发蓬松度=0, 酒窝=0, 雀斑=0, 皮肤毛孔=0, 皮肤细节=0, 痣=0, 皮肤瑕疵=0, 皱纹=0, 小麦色肤色=0,  眼睛细节=1, 虹膜细节=1, 圆形虹膜=1, 圆形瞳孔=1, 面部对称性=0, 补充提示词="", 起始提示词="", 结束提示词="", 灯光类型="-", 灯光方向="-", 灯光权重=0, 负面提示词="", 提高照片真实感="disable", 胡子="-", 姿势="-", 痘痘=0):
 
         shot = get_prompt(self.shot_data, 镜头类型)
         gender = get_prompt(self.gender_data, 性别)
@@ -319,6 +372,10 @@ class PortraitMaster_中文版:
         hair_color = get_prompt(self.hair_color_data, 头发颜色)
         light_type = get_prompt(self.light_type_data, 灯光类型)
         light_direction = get_prompt(self.light_direction_data, 灯光方向)
+        #V2.2
+        body_type = get_prompt(self.body_type_data, 体型)
+        beard = get_prompt(self.beard_data, 胡子)
+        model_pose = get_prompt(self.model_pose_data, 姿势)
 
         prompt = []
 
@@ -344,6 +401,12 @@ class PortraitMaster_中文版:
 
         prompt.append(f"({Anationality}{性别}{round(年龄)}-years-old:1.5)")
 
+        if 体型 != "-" and 体型权重 > 0:
+            prompt.append(f"({body_type}, {body_type} body:{round(体型权重, 2)})")
+
+        if 姿势 != "-":
+            prompt.append(f"({model_pose}:1.5)")
+
         if 眼睛颜色 != "-":
             prompt.append(f"({eyes_color} eyes:1.25)")
         
@@ -351,13 +414,16 @@ class PortraitMaster_中文版:
             prompt.append(f"({facial_expressions}, {facial_expressions} expression:{round(面部表情权重, 2)})")
 
         if 脸型 != "-" and 脸型权重 > 0:
-            prompt.append(f"({face_shape} shape face:{脸型权重})")
+            prompt.append(f"({face_shape} shape face:{round(脸型权重, 2)})")
 
         if 发型 != "-":
             prompt.append(f"({hair_style} hairstyle:1.25)")
 
         if 头发颜色 != "-":
             prompt.append(f"({hair_color} hair:1.25)")
+
+        if 胡子 != "-":
+            prompt.append(f"({beard}:1.15)")
         
         if 头发蓬松度 != "-":
             prompt.append(f"(disheveled:{round(头发蓬松度, 2)})")
@@ -373,6 +439,15 @@ class PortraitMaster_中文版:
 
         if 皮肤瑕疵 > 0:
             prompt.append(f"(skin imperfections:{round(皮肤瑕疵, 2)})")
+
+        if 痘痘 > 0:
+            prompt.append(f"(acne, skin with acne:{round(skin_acne, 2)})")
+
+        if 皱纹 > 0:
+            prompt.append(f"(skin imperfections:{round(wrinkles, 2)})")
+
+        if 小麦色肤色 > 0:
+            prompt.append(f"(tanned skin:{round(tanned_skin, 2)})")
 
         if 酒窝 > 0:
             prompt.append(f"(dimples:{round(酒窝, 2)})")
