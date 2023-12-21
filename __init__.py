@@ -441,13 +441,13 @@ class PortraitMaster_中文版:
             prompt.append(f"(skin imperfections:{round(皮肤瑕疵, 2)})")
 
         if 痘痘 > 0:
-            prompt.append(f"(acne, skin with acne:{round(skin_acne, 2)})")
+            prompt.append(f"(acne, skin with acne:{round(痘痘, 2)})")
 
         if 皱纹 > 0:
-            prompt.append(f"(skin imperfections:{round(wrinkles, 2)})")
+            prompt.append(f"(skin imperfections:{round(皱纹, 2)})")
 
         if 小麦色肤色 > 0:
-            prompt.append(f"(tanned skin:{round(tanned_skin, 2)})")
+            prompt.append(f"(tanned skin:{round(小麦色肤色, 2)})")
 
         if 酒窝 > 0:
             prompt.append(f"(dimples:{round(酒窝, 2)})")
