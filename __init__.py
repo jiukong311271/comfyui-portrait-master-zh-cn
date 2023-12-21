@@ -506,5 +506,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "PortraitMaster_中文版": "📸 肖像大师_中文版_2.0"
+    "PortraitMaster_中文版": "📸 肖像大师_中文版_2.2"
 }
